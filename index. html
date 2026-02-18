@@ -2,83 +2,168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>3D Portfolio Demo</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bharathi S | Mechanical Portfolio</title>
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-    color: white;
-    text-align: center;
-}
+  body { margin: 0; overflow: hidden; background: #0b0c10; }
+  canvas { display: block; }
 
-/* Hero Section */
-.hero {
-    padding: 120px 20px;
-}
-
-/* 3D Card */
-.card {
-    width: 300px;
-    margin: 40px auto;
-    padding: 30px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.card:hover {
-    transform: rotateY(20deg) rotateX(10deg) scale(1.05);
-}
-
-/* Section */
-.section {
-    padding: 60px 20px;
-}
-
-/* Floating animation */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
-}
-
-.float {
+  #info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #66fcf1;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 0 0 10px rgba(0,255,255,0.5);
+    z-index: 10;
     animation: float 4s ease-in-out infinite;
-}
+  }
 
+  #info h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #66fcf1;
+    animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+  }
+
+  #info p {
+    margin: 5px 0;
+    font-size: 1rem;
+    opacity: 0;
+    animation: fadeGlow 3s ease forwards;
+    animation-delay: 2s; /* starts after name typing */
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: #66fcf1 }
+  }
+
+  @keyframes fadeGlow {
+    to {
+      opacity: 1;
+      text-shadow: 0 0 20px #66fcf1, 0 0 40px #45a29e;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
 </style>
 </head>
-
 <body>
-
-<div class="hero">
-    <h1 class="float">Hi, I am Bharathii</h1>
-    <h2>Mechanical Engineering Student</h2>
+<div id="info">
+  <h1>Bharathi S</h1>
+  <p>Mechanical Engineer | CAD | AutoCAD | PTC Creo | Fusion 360</p>
+  <p>Department: BE Mechanical Engineering (SVCE)</p>
 </div>
 
-<div class="card">
-    <h2>About Me</h2>
-    <p>Interested in Mechanical Design, Thermal Engineering and Technology Development.</p>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+  // Scene, Camera, Renderer
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0b0c10);
 
-<div class="card">
-    <h2>Skills</h2>
-    <p>Thermodynamics | Fluid Mechanics | CAD | Python</p>
-</div>
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 5, 15);
 
-<div class="card">
-    <h2>Projects</h2>
-    <p>Real-Time Gas Sensing and Servo-Based Mitigation System</p>
-</div>
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
-<div class="section">
-    <h2>Contact</h2>
-    <p>Email: yourmail@gmail.com</p>
-</div>
+  // Orbit controls
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
 
+  // Lights
+  const ambientLight = new THREE.AmbientLight(0x66fcf1, 0.5);
+  scene.add(ambientLight);
+  const pointLight = new THREE.PointLight(0x66fcf1, 1);
+  pointLight.position.set(10, 20, 10);
+  scene.add(pointLight);
+
+  // Function to create rotating gear
+  function createGear(radius=1, thickness=0.2, teeth=12, color=0x66fcf1){
+    const gearGroup = new THREE.Group();
+    for(let i=0;i<teeth;i++){
+      const toothGeo = new THREE.BoxGeometry(0.2, thickness, radius/3);
+      const toothMat = new THREE.MeshStandardMaterial({color: color});
+      const tooth = new THREE.Mesh(toothGeo, toothMat);
+      tooth.position.x = Math.cos(i*2*Math.PI/teeth)*radius;
+      tooth.position.z = Math.sin(i*2*Math.PI/teeth)*radius;
+      tooth.rotation.y = -i*2*Math.PI/teeth;
+      gearGroup.add(tooth);
+    }
+    const cylGeo = new THREE.CylinderGeometry(radius*0.5, radius*0.5, thickness, 32);
+    const cylMat = new THREE.MeshStandardMaterial({color: color});
+    const cyl = new THREE.Mesh(cylGeo, cylMat);
+    cyl.rotation.x = Math.PI/2;
+    gearGroup.add(cyl);
+    return gearGroup;
+  }
+
+  // Create gears
+  const gears = [];
+  for(let i=0; i<3; i++){
+    const gear = createGear(1+i*0.5, 0.2, 12+i*4);
+    gear.position.set(i*3-3,0,0);
+    scene.add(gear);
+    gears.push(gear);
+  }
+
+  // Floating hologram panels
+  function createPanel(size=3, color=0x45a29e){
+    const geo = new THREE.PlaneGeometry(size, size);
+    const mat = new THREE.MeshStandardMaterial({color: color, transparent: true, opacity: 0.7, side: THREE.DoubleSide});
+    const panel = new THREE.Mesh(geo, mat);
+    panel.position.set((Math.random()-0.5)*10, (Math.random()-0.5)*6, (Math.random()-0.5)*10);
+    return panel;
+  }
+
+  const panels = [];
+  for(let i=0; i<3; i++){
+    const panel = createPanel();
+    scene.add(panel);
+    panels.push(panel);
+  }
+
+  // Stars
+  const starGeo = new THREE.SphereGeometry(0.02, 8, 8);
+  const starMat = new THREE.MeshBasicMaterial({color: 0xffffff});
+  for(let i=0;i<200;i++){
+    const star = new THREE.Mesh(starGeo, starMat);
+    star.position.set((Math.random()-0.5)*50, (Math.random()-0.5)*50, (Math.random()-0.5)*50);
+    scene.add(star);
+  }
+
+  // Animate
+  function animate(){
+    requestAnimationFrame(animate);
+    gears.forEach((g,i)=> g.rotation.y += 0.01*(i+1));
+    panels.forEach((p, idx) => {
+      p.position.y += Math.sin(Date.now() * 0.001 + idx) * 0.002;
+      p.rotation.y += 0.001;
+    });
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Resize
+  window.addEventListener('resize', ()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
 </body>
 </html>
