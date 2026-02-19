@@ -7,57 +7,87 @@
 
 <link rel="stylesheet" href="style.css">
 
-<!-- Icons -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
-
 <body>
 
 <!-- Welcome Screen -->
-<section class="welcome">
-  <h1 class="welcome-text">Welcome to My Portfolio</h1>
+<section id="welcome">
+  <h1>Welcome to Bharathi's Portfolio</h1>
 </section>
 
-<!-- Main Portfolio -->
-<section class="container">
+<!-- Main Content -->
+<section id="main" class="hidden">
 
-  <div class="card intro">
-    <h2>👋 Hello, I am Bharathi</h2>
-    <p>Mechanical Designer | CAD | Developer</p>
-  </div>
-
-  <div class="card about">
+  <div class="about">
     <h2>About Me</h2>
-    <p>I am passionate about design, CAD modeling, and modern web development.</p>
+    <p>
+Mechanical Engineering student at Sri Venkateswara College of Engineering (SVCE), Tamil Nadu. Passionate about mechanical design and engineering problem-solving. Skilled in AutoCAD, PTC Creo, Fusion 360, MS Excel, and Programming in C. Seeking entry-level mechanical design role.
+    </p>
   </div>
 
-  <div class="card skills">
-    <h2>Skills</h2>
+  <!-- Menu Buttons -->
+  <div class="menu">
+    <button onclick="showSection('skills')">Skills</button>
+    <button onclick="showSection('experience')">Work Experience</button>
+    <button onclick="showSection('certification')">Certification</button>
+    <button onclick="showSection('languages')">Languages</button>
+  </div>
+
+  <!-- Sections -->
+  <div id="skills" class="content">
+    <h3>Skills</h3>
     <ul>
-      <li>SolidWorks</li>
       <li>AutoCAD</li>
-      <li>HTML CSS</li>
-      <li>JavaScript</li>
+      <li>PTC Creo</li>
+      <li>Fusion 360</li>
+      <li>Microsoft Excel</li>
+      <li>Programming in C</li>
+      <li>Team Work</li>
     </ul>
   </div>
 
-  <div class="card projects">
-    <h2>Projects</h2>
-    <p>Gas Sensing Safety System</p>
-    <p>CAD Mechanical Designs</p>
+  <div id="experience" class="content">
+    <h3>Work Experience</h3>
+    <p><strong>Internship – Neyveli Lignite Corporation (NLC)</strong></p>
+    <p>Reconditioning of 90kW worm & planetary gearboxes in Bucket Wheel Excavators. Performed dismantling, inspection, reassembly, and lubrication analysis.</p>
+
+    <p><strong>Design Thinking Project</strong></p>
+    <p>Arduino-based LPG Gas Leakage Detection System for domestic safety.</p>
   </div>
 
-  <div class="card contact">
-    <h2>Contact</h2>
-    <p><i class="fa-solid fa-envelope"></i> bharathi@gmail.com</p>
-    <p><i class="fa-brands fa-linkedin"></i> bharathii</p>
+  <div id="certification" class="content">
+    <h3>Certifications</h3>
+    <ul>
+      <li>NPTEL – Machinery Fault Diagnosis (IIT Kharagpur)</li>
+      <li>Sustainable Energy Technology (IIT Hyderabad)</li>
+      <li>Lean Startup – IIC SVCE</li>
+      <li>Excel Certification – Intellipaat</li>
+      <li>GD&T Certification</li>
+    </ul>
   </div>
+
+  <div id="languages" class="content">
+    <h3>Languages</h3>
+    <ul>
+      <li>English</li>
+      <li>Tamil</li>
+    </ul>
+  </div>
+
+  <!-- Contact -->
+  <footer>
+    <p><i class="fa-solid fa-envelope"></i> ssuriyas2006@gmail.com</p>
+    <p><i class="fa-brands fa-linkedin"></i> 
+      <a href="https://www.linkedin.com/in/bharathiis" target="_blank">
+      www.linkedin.com/in/bharathiis</a>
+    </p>
+  </footer>
 
 </section>
 
 <script src="script.js"></script>
-
 </body>
 </html>
