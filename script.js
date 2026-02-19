@@ -14,7 +14,7 @@ document.getElementById(id).style.display="block";
 // Hearts Animation
 document.addEventListener("click", function(e){
 let heart=document.createElement("div");
-heart.innerHTML="💕";
+heart.innerHTML="❤️";
 heart.classList.add("heart");
 heart.style.left=e.clientX+"px";
 heart.style.top=e.clientY+"px";
