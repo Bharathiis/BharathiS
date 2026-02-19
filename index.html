@@ -11,6 +11,7 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
+
 <body>
 
 <!-- Welcome Screen -->
@@ -18,17 +19,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
   <h1>Welcome to Bharathi's Portfolio</h1>
 </section>
 
-<!-- Main Content -->
-<section id="main" class="hidden">
+<!-- Main Portfolio -->
+<section id="main" style="display:none;">
 
   <div class="about">
     <h2>About Me</h2>
     <p>
-Mechanical Engineering student at Sri Venkateswara College of Engineering (SVCE), Tamil Nadu. Passionate about mechanical design and engineering problem-solving. Skilled in AutoCAD, PTC Creo, Fusion 360, MS Excel, and Programming in C. Seeking entry-level mechanical design role.
+Mechanical Engineering student passionate about Mechanical Design, CAD Modeling and Engineering Problem Solving. Skilled in AutoCAD, PTC Creo, Fusion 360, MS Excel and C Programming.
     </p>
   </div>
 
-  <!-- Menu Buttons -->
+  <!-- Menu -->
   <div class="menu">
     <button onclick="showSection('skills')">Skills</button>
     <button onclick="showSection('experience')">Work Experience</button>
@@ -36,7 +37,7 @@ Mechanical Engineering student at Sri Venkateswara College of Engineering (SVCE)
     <button onclick="showSection('languages')">Languages</button>
   </div>
 
-  <!-- Sections -->
+  <!-- Skills -->
   <div id="skills" class="content">
     <h3>Skills</h3>
     <ul>
@@ -49,26 +50,26 @@ Mechanical Engineering student at Sri Venkateswara College of Engineering (SVCE)
     </ul>
   </div>
 
+  <!-- Experience -->
   <div id="experience" class="content">
     <h3>Work Experience</h3>
-    <p><strong>Internship – Neyveli Lignite Corporation (NLC)</strong></p>
-    <p>Reconditioning of 90kW worm & planetary gearboxes in Bucket Wheel Excavators. Performed dismantling, inspection, reassembly, and lubrication analysis.</p>
-
-    <p><strong>Design Thinking Project</strong></p>
-    <p>Arduino-based LPG Gas Leakage Detection System for domestic safety.</p>
+    <p><b>NLC Internship</b> – Gearbox reconditioning for Bucket Wheel Excavators</p>
+    <p>Arduino LPG Gas Leakage Detection Safety Project</p>
   </div>
 
+  <!-- Certification -->
   <div id="certification" class="content">
     <h3>Certifications</h3>
     <ul>
-      <li>NPTEL – Machinery Fault Diagnosis (IIT Kharagpur)</li>
-      <li>Sustainable Energy Technology (IIT Hyderabad)</li>
-      <li>Lean Startup – IIC SVCE</li>
-      <li>Excel Certification – Intellipaat</li>
+      <li>NPTEL – Machinery Fault Diagnosis</li>
+      <li>Sustainable Energy Technology</li>
+      <li>Lean Startup Certification</li>
+      <li>Excel Certification</li>
       <li>GD&T Certification</li>
     </ul>
   </div>
 
+  <!-- Languages -->
   <div id="languages" class="content">
     <h3>Languages</h3>
     <ul>
@@ -80,14 +81,24 @@ Mechanical Engineering student at Sri Venkateswara College of Engineering (SVCE)
   <!-- Contact -->
   <footer>
     <p><i class="fa-solid fa-envelope"></i> ssuriyas2006@gmail.com</p>
-    <p><i class="fa-brands fa-linkedin"></i> 
+    <p>
+      <i class="fa-brands fa-linkedin"></i>
       <a href="https://www.linkedin.com/in/bharathiis" target="_blank">
-      www.linkedin.com/in/bharathiis</a>
+      LinkedIn Profile</a>
     </p>
   </footer>
 
 </section>
 
 <script src="script.js"></script>
+
+<!-- Auto Welcome Timer -->
+<script>
+setTimeout(function(){
+document.getElementById("welcome").style.display="none";
+document.getElementById("main").style.display="block";
+}, 2000);
+</script>
+
 </body>
 </html>
