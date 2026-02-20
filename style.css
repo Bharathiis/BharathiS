@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+
+body{
+background:#0f0f1a;
+color:white;
+overflow-x:hidden;
+text-align:center;
+}
+
+/* Welcome */
+#welcome{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(45deg,#ff2770,#45f3ff);
+cursor:pointer;
+}
+
+#welcome h1{
+font-size:50px;
+animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+0%{opacity:0;transform:scale(0.5);}
+100%{opacity:1;transform:scale(1);}
+}
+
+.hidden{display:none;}
+
+#main{
+padding:50px 20px;
+animation:slideUp 1s ease;
+}
+
+@keyframes slideUp{
+from{transform:translateY(50px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+/* About */
+.about{
+margin-bottom:40px;
+}
+
+/* Menu */
+.menu button{
+margin:10px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#45f3ff;
+color:black;
+cursor:pointer;
+transition:0.3s;
+}
+
+.menu button:hover{
+box-shadow:0 0 15px #45f3ff;
+transform:scale(1.1);
+}
+
+/* Content Sections */
+.content{
+display:none;
+margin-top:30px;
+animation:fadeIn 0.8s ease;
+}
+
+ul{list-style:none;}
+li{margin:8px 0;}
+
+footer{
+margin-top:50px;
+padding:20px;
+background:#111;
+}
+
+footer a{
+color:#45f3ff;
+text-decoration:none;
+}
+
+/* Hearts */
+.heart{
+position:fixed;
+font-size:20px;
+animation:floatUp 2s linear forwards;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-200px);opacity:0;}
+}
